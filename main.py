@@ -3,7 +3,6 @@ from covid import Covid
 import csv
 import pandas as pd
 from matplotlib.pyplot import ylabel, bar, plot, scatter, show, xlabel
-import pyttsx3 as s
 
 cv = Covid()
 l2 = []
@@ -11,12 +10,9 @@ l1 = ['id', 'country', 'confirmed', 'active', 'deaths', 'recovered', 'latitude',
 
 
 def world():
-    f = s.init()
 
-    print("covid Analysis")
-    print()
-    f.say("covid Analysis")
-    f.runAndWait()
+    print("Covid Analysis")
+    print("Fetching data......\n")
 
     cv = Covid()
     act = cv.get_total_active_cases()
@@ -29,8 +25,7 @@ def world():
     wl.append(rec)
     wl.append(death)
     wl.append(con)
-    f.say("Total covid details of world are shown in the screen")
-    f.runAndWait()
+  
     print(f"cases in world:{dict(zip(wll, wl))}")
 
 
@@ -281,25 +276,22 @@ def add_col():
 def add_row():
     global l3
     while 1:
-        f = s.init()
+        
         print()
 
-        print("enter country name or enter no to stop")
-        f.say("enter country name or enter no to stop")
-        print()
-        f.runAndWait()
+        print("enter country name or enter no to stop:")
+        #print()
+      
         name = input().lower()
         if name == "no":
-            f.say("we stop showing covid details on the screen")
-            f.runAndWait()
+            print("we stop showing covid details on the screen")
+  
 
         elif name not in lc:
-            f.say("you entered invalid country name please enter again")
-            f.runAndWait()
+            print("you entered invalid country name please enter again:")
         else:
-
-            f.say(f"covid details of {name} are showing on the screen")
-            f.runAndWait()
+            print(f"covid details of {name} are showing on the screen:")
+          
         if name in lc:
 
             n = cv.get_status_by_country_name(name)
@@ -318,34 +310,20 @@ def add_row():
             break
 
         else:
-            print("invalid country")
+            print("invalid country.....")
 
 
 def menu():
-    f = s.init()
     df = pd.read_csv("p.csv")
     print(df.head())
     print("enter 1 for bar plot:")
-    f.say("enter one for bar plot:")
-    f.runAndWait()
     print("enter 2 for scatter plot:")
-    f.say("enter two for scatter plot:")
-    f.runAndWait()
     print("enter 3 for plot:")
-    f.say("enter three for plot:")
-    f.runAndWait()
     print("enter 4 for exit:")
-    f.say("enter four for exit:")
-    f.runAndWait()
 
 
 def show():
     while 1:
-        f = s.init()
-
-        f.say("enter options:")
-        f.runAndWait()
-
         ch = int(input("enter options:"))
         df = pd.read_csv("p.csv")
 
@@ -401,14 +379,10 @@ def show():
             scatter(df['country'], df['recovered'])
             show()
         elif ch == 4:
-            print("Thankyou I hope you liked this project")
-            f.say("Thankyou I hope you liked this project")
-            f.runAndWait()
+            print("Thankyou... I hope you liked this project.")
             break
         else:
-            print("invalid option try again")
-            f.say("invalid option try again")
-            f.runAndWait()
+            print("invalid option try again...")
 
 world()
 add_col()
